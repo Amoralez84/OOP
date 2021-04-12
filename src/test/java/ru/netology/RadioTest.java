@@ -17,7 +17,9 @@ class RadioTest {
     public void shouldChangeUnderMinVolume() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentVolume());
-        radio.setCurrentVolume(-1);
+        radio.setCurrentVolume(0);
+        assertEquals(0, radio.getCurrentVolume());
+        radio.volumeDown();
         assertEquals(0, radio.getCurrentVolume());
     }
 
@@ -25,8 +27,10 @@ class RadioTest {
     public void shouldChangeUpMaxVolume() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentVolume());
-        radio.setCurrentVolume(11);
-        assertEquals(0, radio.getCurrentVolume());
+        radio.setCurrentVolume(10);
+        assertEquals(10, radio.getCurrentVolume());
+        radio.volumeUp();
+        assertEquals(10, radio.getCurrentVolume());
     }
 
     @Test
@@ -41,51 +45,95 @@ class RadioTest {
     public void shouldChangeUnderMinChannel() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentChannel());
-        radio.setCurrentChannel(-1);
+        radio.setMinChannel(0);
+        assertEquals(0, radio.getMinChannel());
+        radio.channelDown();
         assertEquals(9, radio.getCurrentChannel());
+
     }
 
     @Test
     public void shouldChangeUpMaxChannel() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentChannel());
-        radio.setCurrentChannel(10);
+        radio.setCurrentChannel(9);
+        assertEquals(9, radio.getCurrentChannel());
+        radio.channelUp();
         assertEquals(0, radio.getCurrentChannel());
     }
 
     @Test
-    public void shouldChangeUpVolume() {
+    public void shouldChangeMaxVolume() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentVolume());
-        radio.setUpVolume(1);
-        assertEquals(1, radio.getUpVolume());
+        radio.setCurrentVolume(10);
+        assertEquals(10, radio.getCurrentVolume());
     }
 
     @Test
-    public void shouldChangeDownVolume() {
+    public void shouldChangeMinVolume() {
+        Radio radio = new Radio();
+        assertEquals(0, radio.getCurrentVolume());
+        radio.setCurrentVolume(6);
+        assertEquals(6, radio.getCurrentVolume());
+        radio.setMinVolume(0);
+        assertEquals(0, radio.getMinVolume());
+    }
+
+    @Test
+    public void shouldChangeMaxChannel() {
+        Radio radio = new Radio();
+        assertEquals(0, radio.getCurrentChannel());
+        radio.setMaxChannel(9);
+        assertEquals(9, radio.getMaxChannel());
+    }
+
+    @Test
+    public void shouldChangeMinChannel() {
+        Radio radio = new Radio();
+        assertEquals(0, radio.getCurrentChannel());
+        radio.setCurrentChannel(4);
+        assertEquals(4, radio.getCurrentChannel());
+        radio.setMinChannel(0);
+        assertEquals(0, radio.getMinChannel());
+    }
+
+    @Test
+    public void shouldChangeVolumeUp() {
+        Radio radio = new Radio();
+        assertEquals(0, radio.getMinVolume());
+        radio.volumeUp();
+        assertEquals(1, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void shouldChangeVolumeDown() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentVolume());
         radio.setCurrentVolume(5);
         assertEquals(5, radio.getCurrentVolume());
-        radio.setDownVolume(4);
-        assertEquals(4, radio.getDownVolume());
+        radio.volumeDown();
+        assertEquals(4, radio.getCurrentVolume());
     }
 
     @Test
-    public void shouldChangeUpChannel(){
+    public void shouldChangeChannelUp() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentChannel());
-        radio.setUpChannel(1);
-        assertEquals(1, radio.getUpChannel());
+        radio.setCurrentChannel(2);
+        assertEquals(2, radio.getCurrentChannel());
+        radio.channelUp();
+        assertEquals(3, radio.getCurrentChannel());
     }
 
     @Test
-    public  void shouldChangeDownChannel(){
+    public void shouldChangeChannelDown() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentChannel());
-        radio.setCurrentChannel(5);
-        assertEquals(5, radio.getCurrentChannel());
-        radio.setDownChannel(4);
-        assertEquals(4, radio.getDownChannel());
+        radio.setCurrentChannel(7);
+        assertEquals(7, radio.getCurrentChannel());
+        radio.channelDown();
+        assertEquals(6, radio.getCurrentChannel());
     }
+
 }

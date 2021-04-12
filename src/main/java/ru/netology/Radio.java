@@ -7,49 +7,45 @@ public class Radio {
     private int minChannel = 0;
     private int maxChannel = 9;
     private int currentChannel;
-    private int upVolume;
-    private int downVolume;
-    private int upChannel;
-    private int downChannel;
 
-    public int getUpVolume() {
-        return upVolume;
+    public void volumeUp() {
+        if (currentVolume < maxVolume) {
+            currentVolume++;
+        }
+        if (currentVolume == maxVolume) {
+            return;
+        }
     }
 
-    public void setUpVolume(int upVolume) {
-        upVolume = currentVolume + 1;
-        this.upVolume = upVolume;
+    public void volumeDown() {
+        if (currentVolume > minVolume) {
+            currentVolume--;
+        }
+        if (currentVolume == minVolume) {
+            return;
+        }
     }
 
-    public int getDownVolume() {
-        return downVolume;
+    public void channelUp() {
+        if (currentChannel < maxChannel)
+            currentChannel++;
+        if (currentChannel == maxChannel) {
+            currentChannel = minChannel;
+        }
+
     }
 
-    public void setDownVolume(int downVolume) {
-        downVolume = currentVolume - 1;
-        this.downVolume = downVolume;
-    }
-
-    public int getUpChannel() {
-        return upChannel;
-    }
-
-    public void setUpChannel(int upChannel) {
-        upChannel = currentChannel + 1;
-        this.upChannel = upChannel;
-    }
-
-    public int getDownChannel() {
-        return downChannel;
-    }
-
-    public void setDownChannel(int downChannel) {
-        downChannel = currentChannel - 1;
-        this.downChannel = downChannel;
+    public void channelDown() {
+        if (currentChannel > minChannel) {
+            currentChannel--;
+        }
+        if (currentChannel == minChannel) {
+            currentChannel = maxChannel;
+        }
     }
 
     public int getMaxVolume() {
-        return maxVolume;
+        return currentVolume;
     }
 
     public void setMaxVolume(int maxVolume) {
@@ -68,14 +64,15 @@ public class Radio {
         return currentVolume;
     }
 
-    public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > maxVolume) {
-            return;
+    public int setCurrentVolume(int currentVolume) {
+        if (currentVolume == maxVolume) {
+            currentVolume = maxVolume;
         }
-        if (currentVolume < minVolume) {
-            return;
+        if (currentVolume == minVolume) {
+            return minVolume;
         }
         this.currentVolume = currentVolume;
+        return currentVolume;
     }
 
     public int getMinChannel() {
@@ -98,21 +95,12 @@ public class Radio {
         return currentChannel;
     }
 
-    public void setCurrentChannel(int currentChannel) {
-        if (currentChannel > maxChannel) {
-            currentChannel = minChannel;
-        }
-        if (currentChannel < minChannel) {
-            currentChannel = maxChannel;
-        }
+    public int setCurrentChannel(int currentChannel) {
+
         this.currentChannel = currentChannel;
+        return currentChannel;
     }
 
-    public void setDownVolume() {
-    }
-
-    public void setUpVolume() {
-    }
 }
 
 
