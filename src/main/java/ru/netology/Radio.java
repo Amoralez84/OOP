@@ -27,11 +27,11 @@ public class Radio {
     }
 
     public void channelUp() {
-        if (currentChannel < maxChannel)
+        if (currentChannel < maxChannel) {
             currentChannel++;
-        if (currentChannel == maxChannel) {
-            currentChannel = minChannel;
+            return;
         }
+        currentChannel = minChannel;
 
     }
 
@@ -45,7 +45,7 @@ public class Radio {
     }
 
     public int getMaxVolume() {
-        return currentVolume;
+        return maxVolume;
     }
 
     public void setMaxVolume(int maxVolume) {
@@ -95,10 +95,11 @@ public class Radio {
         return currentChannel;
     }
 
-    public int setCurrentChannel(int currentChannel) {
-
+    public void setCurrentChannel(int currentChannel) {
+        if (currentChannel > maxChannel) {
+            return;
+        }
         this.currentChannel = currentChannel;
-        return currentChannel;
     }
 
 }

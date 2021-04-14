@@ -66,8 +66,8 @@ class RadioTest {
     public void shouldChangeMaxVolume() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentVolume());
-        radio.setCurrentVolume(10);
-        assertEquals(10, radio.getCurrentVolume());
+        radio.setMaxVolume(10);
+        assertEquals(10, radio.getMaxVolume());
     }
 
     @Test
@@ -120,10 +120,12 @@ class RadioTest {
     public void shouldChangeChannelUp() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentChannel());
-        radio.setCurrentChannel(2);
-        assertEquals(2, radio.getCurrentChannel());
+        radio.setCurrentChannel(8);
+        assertEquals(8, radio.getCurrentChannel());
         radio.channelUp();
-        assertEquals(3, radio.getCurrentChannel());
+        assertEquals(9, radio.getCurrentChannel());
+        radio.setCurrentChannel(9);
+
     }
 
     @Test
@@ -134,6 +136,15 @@ class RadioTest {
         assertEquals(7, radio.getCurrentChannel());
         radio.channelDown();
         assertEquals(6, radio.getCurrentChannel());
+    }
+
+    @Test
+    public void shouldUpMaxChannel() {
+        Radio radio = new Radio();
+        assertEquals(0, radio.getCurrentChannel());
+        radio.setCurrentChannel(10);
+        assertEquals(0, radio.getCurrentChannel());
+
     }
 
 }
