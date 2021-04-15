@@ -38,11 +38,10 @@ public class Radio {
     public void channelDown() {
         if (currentChannel > minChannel) {
             currentChannel--;
+            return;
         }
-        if (currentChannel == minChannel) {
-            currentChannel = maxChannel;
-        }
-    }
+        currentChannel = maxChannel;
+            }
 
     public int getMaxVolume() {
         return maxVolume;

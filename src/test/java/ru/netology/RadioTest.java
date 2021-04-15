@@ -132,10 +132,10 @@ class RadioTest {
     public void shouldChangeChannelDown() {
         Radio radio = new Radio();
         assertEquals(0, radio.getCurrentChannel());
-        radio.setCurrentChannel(7);
-        assertEquals(7, radio.getCurrentChannel());
+        radio.setCurrentChannel(1);
+        assertEquals(1, radio.getCurrentChannel());
         radio.channelDown();
-        assertEquals(6, radio.getCurrentChannel());
+        assertEquals(0, radio.getCurrentChannel());
     }
 
     @Test
